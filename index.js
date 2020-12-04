@@ -13,9 +13,19 @@ The function should:
   2. Create and return an object using the received values  
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(name, cost, categ){
+
+  
+  const item = {
+    name: name,
+    price: cost,
+    category: categ
+    
+  }
+  return item;
 }
+
+console.log(createMenuItem("Breakfast Burrito", 16, "Breakfast"));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Test your createMenuItems function by doing the following:
@@ -41,14 +51,28 @@ Using the burger object below do the following:
   For example: burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2
 */
 
+// export const burger = {
+//   name: "Burger", 
+//   price: 18, 
+//   category: "Lunch", 
+//   /*Your code here*/
+// }
+
 export const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  /*Your code here*/
+  discount: function(string){ //create another cat. that is a function (method)
+     if(string.includes("teacher","student")){  //why is "student" coming up as undefined?
+       return this.price - (this.price * .25);
+     }else if (string.includes("public")){
+       return this.price - (this.price * .1);
+     }
+   
+  }           
+ 
 }
-
-
+console.log(burger.discount("public"));
 
 ///////////////Reviews (MVP)///////////////////
 const reviews = [
@@ -67,7 +91,7 @@ Using the reviews array above:
   1. log only Julius' feedback to the console
 */
 
-
+console.log(reviews[5].feedback);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -76,14 +100,18 @@ Using the reviews array above do the following:
   2. log the whole array to the console, make sure the new review is inside of it   
 */
 
+reviews.push({name: "MJ", rating: 1, feedback: "Lebron is a flopper!"});
 
+console.log(reviews);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following:
   1. Add this feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
   2. log the reviews array to the console to check your work
 */
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
 
+console.log(reviews);
 
 
 
@@ -97,10 +125,12 @@ Use the getReviewByIndex function below to do the following:
   For example: getReviewByIndex(reviews,0) would return: "Daniela gave the restaurant a 5 star review, and their feedback was: Beautiful atmosphere and wonderful vegan options!"
 */
 
-
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(arrName, index) {
+  return arrName[index].name + " gave the restaurant a " + arrName[index].rating + " star review, and their feedback was: " + arrName[index].feedback
 }
+
+console.log(getReviewByIndex(reviews, 5));
+
 
 
   
@@ -116,9 +146,13 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(array) {
+  const lastRev = (array.length -1) //declare a new variable to assign to the given array (since we can only use one parameter/argument) so that we can get the array length and -1 which gives us the last item in the array
+  return lastRev.name + " gave the restaurant a " + lastRev.rating + "start review and their feedback was " + lastRev.feedback; 
 } 
+
+console.log(getLastReview(reviews)); //WHY AM I STILL GETTING "UNDEFINED"?!
+
 
 
 
